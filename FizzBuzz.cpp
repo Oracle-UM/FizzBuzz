@@ -48,6 +48,11 @@ class FizzBuzz final {
         return _is_multiple && 'B' == _s[-1 + sizeof("Fizz") / sizeof(char)];
     }
 
+    [[nodiscard]]
+    constexpr bool is_fizz_or_buzz() const {
+        return _is_multiple && ('F' == _s[0] || 'B' == _s[0]);
+    }
+
     friend std::ostream& operator<<(std::ostream& os, FizzBuzz const& fb) {
         if (fb._is_multiple) {
             return os << fb._s;
@@ -70,6 +75,7 @@ int main() {
     assert(FizzBuzz{3}.is_fizz());
     assert(FizzBuzz{5}.is_buzz());
     assert(FizzBuzz{15}.is_fizzbuzz());
+    assert(FizzBuzz{27}.is_fizz_or_buzz());
 
     for (auto i = std::uint_fast8_t{ 1 }; i < 100; ++i) {
         std::cout << FizzBuzz{ i } << '\n';
