@@ -32,28 +32,30 @@ class FizzBuzz final {
     }() } {}
 
     [[nodiscard]]
-    constexpr bool is_fizz() const {
+    constexpr auto is_fizz() const -> bool {
         return _is_multiple &&
                'F' == _s[0] &&
                '\0' == _s[-1 + sizeof("Fizz") / sizeof(char)];
     }
 
     [[nodiscard]]
-    constexpr bool is_buzz() const {
+    constexpr auto is_buzz() const -> bool {
         return _is_multiple && 'B' == _s[0];
     }
 
     [[nodiscard]]
-    constexpr bool is_fizzbuzz() const {
+    constexpr auto is_fizzbuzz() const -> bool {
         return _is_multiple && 'B' == _s[-1 + sizeof("Fizz") / sizeof(char)];
     }
 
     [[nodiscard]]
-    constexpr bool is_fizz_or_buzz() const {
+    constexpr auto is_fizz_or_buzz() const -> bool {
         return _is_multiple && ('F' == _s[0] || 'B' == _s[0]);
     }
 
-    friend std::ostream& operator<<(std::ostream& os, FizzBuzz const& fb) {
+    friend auto operator<<(std::ostream &os, FizzBuzz const &fb)
+        -> std::ostream&
+    {
         if (fb._is_multiple) {
             return os << fb._s;
         }
