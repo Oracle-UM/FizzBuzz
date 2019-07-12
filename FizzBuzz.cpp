@@ -20,7 +20,7 @@ class FizzBuzz final {
             offset_ptr += -1 + sizeof("Fizz") / sizeof(char);
         }
         if (i % 5 == 0) {
-            is_multiple |= true;
+            is_multiple = true;
             offset_ptr[0] = 'B';
             offset_ptr[1] = 'u';
             offset_ptr[2] = 'z';
