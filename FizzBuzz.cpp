@@ -8,8 +8,8 @@ class FizzBuzz final {
 
   public:
     constexpr explicit FizzBuzz(std::uint_fast8_t i)
-    : _i{ i }
-    , _is_multiple{ [i, this]() constexpr {
+    : _i{i}
+    , _is_multiple{[i, this]() constexpr {
         auto offset_ptr =  _s;
         auto is_multiple = false;
 
@@ -32,7 +32,7 @@ class FizzBuzz final {
         }
 
         return is_multiple;
-    }() } {}
+    }()} {}
 
     [[nodiscard]]
     constexpr auto is_fizz() const -> bool {
@@ -82,7 +82,7 @@ int main() {
     assert(FizzBuzz{15}.is_fizzbuzz());
     assert(FizzBuzz{27}.is_fizz_or_buzz());
 
-    for (auto i = std::uint_fast8_t{ 1 }; i < 100; ++i) {
-        std::cout << FizzBuzz{ i } << '\n';
+    for (auto i = std::uint_fast8_t{1}; i < 100; ++i) {
+        std::cout << FizzBuzz{i} << '\n';
     }
 }
