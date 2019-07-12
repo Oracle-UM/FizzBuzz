@@ -6,7 +6,7 @@
 class FizzBuzz final {
     using chr = std::char_traits<char>;
 
-  public:
+   public:
     constexpr explicit FizzBuzz(std::uint_fast8_t i)
     : _i{i}
     , _is_multiple{[i, this]() constexpr {
