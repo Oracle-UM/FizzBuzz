@@ -54,7 +54,7 @@ class FizzBuzz final {
         if (fb._is_multiple) {
             return os << fb._s;
         }
-        return os << +fb._i;
+        return os << +fb._i; // print as integer and not as char
     }
 
    private:
