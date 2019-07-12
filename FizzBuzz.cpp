@@ -75,14 +75,14 @@ class FizzBuzz final {
 
 int main() {
     std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
 
     assert(FizzBuzz{3}.is_fizz());
     assert(FizzBuzz{5}.is_buzz());
     assert(FizzBuzz{15}.is_fizzbuzz());
     assert(FizzBuzz{27}.is_fizz_or_buzz());
 
-    for (auto i = std::uint_fast8_t{1}; i < 100; ++i) {
-        std::cout << FizzBuzz{i} << '\n';
+    for (auto i = std::uint_fast8_t{1}; i <= 100; ++i) {
+        std::clog << FizzBuzz{i} << '\n';
     }
+    std::clog.flush();
 }
