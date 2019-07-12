@@ -1,9 +1,12 @@
 #include <cassert>
 #include <cstdint>
 #include <iostream>
+#include <string>
 
 class FizzBuzz final {
-   public:
+    using chr = std::char_traits<char>;
+
+  public:
     constexpr explicit FizzBuzz(std::uint_fast8_t i)
     : _i{ i }
     , _is_multiple{ [i, this]() constexpr {
@@ -17,7 +20,7 @@ class FizzBuzz final {
             offset_ptr[2] = 'z';
             offset_ptr[3] = 'z';
             offset_ptr[4] = '\0';
-            offset_ptr += -1 + sizeof("Fizz") / sizeof(char);
+            offset_ptr += chr::length("Fizz");   
         }
         if (i % 5 == 0) {
             is_multiple = true;
@@ -35,7 +38,7 @@ class FizzBuzz final {
     constexpr auto is_fizz() const -> bool {
         return _is_multiple &&
                'F' == _s[0] &&
-               '\0' == _s[-1 + sizeof("Fizz") / sizeof(char)];
+               '\0' == _s[chr::length("Fizz")];
     }
 
     [[nodiscard]]
@@ -45,7 +48,7 @@ class FizzBuzz final {
 
     [[nodiscard]]
     constexpr auto is_fizzbuzz() const -> bool {
-        return _is_multiple && 'B' == _s[-1 + sizeof("Fizz") / sizeof(char)];
+        return _is_multiple && 'B' == _s[chr::length("Fizz")];
     }
 
     [[nodiscard]]
@@ -65,7 +68,7 @@ class FizzBuzz final {
    private:
     union {
         std::uint_fast8_t const _i;
-        char _s[sizeof("FizzBuzz") / sizeof(char)];
+        char _s[1 + chr::length("FizzBuzz")];
     };
     bool const _is_multiple;
 };
