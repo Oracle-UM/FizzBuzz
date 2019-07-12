@@ -56,7 +56,7 @@ class FizzBuzz final {
         return _is_multiple && ('F' == _s[0] || 'B' == _s[0]);
     }
 
-    friend auto operator<<(std::ostream &os, FizzBuzz const& fb)
+    friend auto operator<<(std::ostream& os, FizzBuzz const& fb)
         -> std::ostream&
     {
         if (fb._is_multiple) {
