@@ -6,7 +6,7 @@ class FizzBuzz final {
    public:
     constexpr explicit FizzBuzz(std::uint_fast8_t i)
     : _i{ i }
-    , _is_multiple{ [=, this]() constexpr {
+    , _is_multiple{ [i, this]() constexpr {
         auto offset_ptr =  _s;
         auto is_multiple = false;
 
