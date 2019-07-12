@@ -15,20 +15,12 @@ class FizzBuzz final {
 
         if (i % 3 == 0) {
             is_multiple = true;
-            offset_ptr[0] = 'F';
-            offset_ptr[1] = 'i';
-            offset_ptr[2] = 'z';
-            offset_ptr[3] = 'z';
-            offset_ptr[4] = '\0';
+            chr::move(offset_ptr, "Fizz", 1 + chr::length("Fizz"));
             offset_ptr += chr::length("Fizz");   
         }
         if (i % 5 == 0) {
             is_multiple = true;
-            offset_ptr[0] = 'B';
-            offset_ptr[1] = 'u';
-            offset_ptr[2] = 'z';
-            offset_ptr[3] = 'z';
-            offset_ptr[4] = '\0';
+            chr::move(offset_ptr, "Buzz", 1 + chr::length("Buzz"));
         }
 
         return is_multiple;
