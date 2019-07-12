@@ -73,7 +73,7 @@ class FizzBuzz final {
     bool const _is_multiple;
 };
 
-int main() {
+auto main() -> int {
     std::ios_base::sync_with_stdio(false);
 
     assert(FizzBuzz{3}.is_fizz());
