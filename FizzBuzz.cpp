@@ -4,12 +4,20 @@
 #include <string>
 
 class FizzBuzz final {
+   private:
     using chr = std::char_traits<char>;
+
+    union {
+        std::uint_fast8_t const _i;
+        char _s[1 + chr::length("FizzBuzz")];
+    };
+
+    bool const _is_multiple;
 
    public:
     constexpr explicit FizzBuzz(std::uint_fast8_t i)
-    : _i{i}
-    , _is_multiple{[i, this]() constexpr {
+    : _i{ i }
+    , _is_multiple{ [i, this]() constexpr {
         auto offset_ptr =  _s;
         auto is_multiple = false;
 
@@ -24,13 +32,14 @@ class FizzBuzz final {
         }
 
         return is_multiple;
-    }()} {}
+    }() }
+    {}
 
     [[nodiscard]]
     constexpr auto is_fizz() const -> bool {
-        return _is_multiple &&
-               'F' == _s[0] &&
-               '\0' == _s[chr::length("Fizz")];
+        return _is_multiple
+            && 'F' == _s[0]
+            && '\0' == _s[chr::length("Fizz")];
     }
 
     [[nodiscard]]
@@ -56,25 +65,18 @@ class FizzBuzz final {
         }
         return os << +fb._i;  // print as integer and not as char
     }
-
-   private:
-    union {
-        std::uint_fast8_t const _i;
-        char _s[1 + chr::length("FizzBuzz")];
-    };
-    bool const _is_multiple;
 };
 
 auto main() -> int {
-    std::ios_base::sync_with_stdio(false);
+    std::ios::sync_with_stdio(false);
 
-    assert(FizzBuzz{3}.is_fizz());
-    assert(FizzBuzz{5}.is_buzz());
-    assert(FizzBuzz{15}.is_fizzbuzz());
-    assert(FizzBuzz{27}.is_fizz_or_buzz());
+    assert(FizzBuzz{ 3 }.is_fizz());
+    assert(FizzBuzz{ 5 }.is_buzz());
+    assert(FizzBuzz{ 15 }.is_fizzbuzz());
+    assert(FizzBuzz{ 27 }.is_fizz_or_buzz());
 
-    for (auto i = std::uint_fast8_t{1}; i <= 100; ++i) {
-        std::clog << FizzBuzz{i} << '\n';
+    for (auto i = std::uint_fast8_t{ 0 } ; i <= 100; ++i) {
+        std::clog << FizzBuzz{ i } << '\n';
     }
     std::clog.flush();
 }
